@@ -1,6 +1,11 @@
 pipeline {
   agent any
   stages {
+    stage('Clone') {
+            steps {
+                checkout scm
+            }
+        }
     stage('Build') {
       parallel {
         stage('Build') {
@@ -40,7 +45,7 @@ pipeline {
           }
         }
 
-        stage('Artifacts') {
+        stage('Publish Artifacts') {
           steps {
             archiveArtifacts 'LogTestFile.txt'
           }
